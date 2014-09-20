@@ -73,7 +73,7 @@
 					$('#slider').flexslider({
 						selector: '.slide',
 						animation: 'fade',
-						slideshowSpeed: 1000,
+						slideshowSpeed: 5000,
 						controlNav: false,
 						directionNav: false,
 						useCSS: false,
