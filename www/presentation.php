@@ -20,6 +20,11 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,12 +34,11 @@
   </head>
   <body>
     <h1>Hello, world!</h1>
+    <p><?php var_dump(json_decode($json_example)); ?></p>
+    <div id="slide"></div>
+	<script type="text/javascript" src="js/presentation.js"></script>
 
-    
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+
   </body>
 </html>
