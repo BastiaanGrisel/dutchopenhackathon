@@ -10,10 +10,11 @@ class CountryColors
 
 		$colors = self::topColors($flag);
 
-		echo json_encode($colors);
+		return $colors;
 	}
 
 	private static function getFlag($country){
+		$country = strtolower($country);
 		return @imagecreatefromgif("http://www.geonames.org/flags/x/" . $country . ".gif");
 	}
 
@@ -107,9 +108,9 @@ class CountryColors
 				if ($H>1) $H--;
 			}
 
-			$HSL['H'] = $H * 255;
-			$HSL['S'] = $S * 255;
-			$HSL['V'] = $V * 255;
+			$HSL['H'] = round($H * 255);
+			$HSL['S'] = round($S * 255);
+			$HSL['V'] = round($V * 255);
 
 			return $HSL;
 		}

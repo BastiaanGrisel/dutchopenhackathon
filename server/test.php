@@ -2,9 +2,11 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include_once("transavia.php");
-include_once("countrycode.php");	
+include_once("huemanager.php");	
+include_once("countrycolors.php");
 
-$data = CountryCode::getCountryCodeForIATA("AMS");
-var_dump($data);
+$colors = CountryColors::getMainColors("NL");
+echo json_encode($colors);
+HueManager::setColors($colors);
+
 ?>
