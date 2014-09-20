@@ -5,7 +5,6 @@ class Recepten{
 		$kitchen = self::getKitchenForCountry($countryCode);
 
 		$recipes = self::getReceptenForKitchen($kitchen);
-
 		
 		$recipes = array_slice($recipes, 0, $amount);
 
@@ -17,8 +16,11 @@ class Recepten{
 		$apikey = "uE1WE1izR2xvV0Y927qP520cYy44quZH";
 		$url = "https://frahmework.ah.nl/!ahpi/recepten.php?recepttag1=" . $kitchen . "&ahpikey=" . $apikey;
 		$recipesEncoded = file_get_contents($url);
-		return json_decode($recipesEncoded);
-	
+		$recipes = json_decode($recipesEncoded);
+
+		shuffle($recipes);
+
+		return $recipes;
 	}
 
 	private static function getKitchenForCountry($country){
