@@ -2,7 +2,7 @@
 /**
 * 
 */
-class CountryConverter
+class CountryColors
 {
 	public static function getMainColors($country){
 		
