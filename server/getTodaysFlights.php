@@ -5,5 +5,11 @@ ini_set('display_errors', 1);
 include_once("transavia.php");
 
 $data = Transavia::getJourneysToKLM();
-echo json_encode($data);
+
+$flightIds = array();
+foreach($data as $flight){
+	$flightIds[] = array($flight->id, $flight->DepartureStation . " - " . $flight->ArrivalStation);
+}
+
+echo json_encode($flightIds);
 ?>
