@@ -6,6 +6,7 @@ include_once("huemanager.php");
 include_once("countrycolors.php");
 
 $colors = CountryColors::getMainColors("BR");
+$colors = CountryColors::array_RGB_TO_HUE($colors);
 echo json_encode($colors);
 HueManager::setColors($colors);
 
