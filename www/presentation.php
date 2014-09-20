@@ -35,7 +35,7 @@
 		<div style="display:none;">
 			
 			<div class="slide" id="probeer_ook_eens">
-				<div class="slide-container" style="background-image: url(https://frahmework.ah.nl/!data/recepten/jpg200/{{receptimageid}}.jpg);">
+				<div class="slide-container" style="background-image: url({{receptimagehd}});">
 					<div class="title-container">
 						<div class="title prefix-title">
 							<span>Probeer ook eens...</span>
