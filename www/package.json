@@ -1,0 +1,10 @@
+{
+	"name": "doh-hans-geers-united",
+	"version": "0.1.0",
+	"devDependencies": {
+		"matchdep": "*",
+		"grunt": "*",
+		"grunt-contrib-watch": "*",
+		"grunt-sass": "*"
+	}
+}
