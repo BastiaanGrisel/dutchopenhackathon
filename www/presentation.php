@@ -9,7 +9,7 @@
   <!-- Bootstrap -->
   <link href="css/bootstrap.css" rel="stylesheet">
   <link href="css/presentation.css" rel="stylesheet">
-  
+
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="js/jquery-2.1.1.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -36,7 +36,14 @@
         </div>
       </div>
 
-      <!-- <div id="ah_to_go">probeer ook eens</div> -->
+      <div id="ah_to_go">
+        <div class="container"> 
+          <div class="title">
+            <span>Zin in een snelle snack voor onderweg?</span>
+          </div>
+          <img src="http://www.sispr.nl/wp-content/uploads/2014/03/AH-To-Go-3-0-Logo-stacked1.jpg" />
+        <div>
+      </div>
 
       <script type="text/javascript" src="js/presentation.js"></script>
     </body>
