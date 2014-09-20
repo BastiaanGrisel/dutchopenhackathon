@@ -33,6 +33,10 @@
 		<script>
 			jQuery(function($) {
 
+				window.recipeRequest.done(function(data, textStatus, jqXHR) {
+					console.log(data);
+				});
+
 				$('#page').flexslider({
 					selector: '.slide',
 					animation: 'slide',
@@ -41,14 +45,14 @@
 					directionNav: false,
 					useCSS: false
 				});
-				
+
 				// Set slide height
 				$('#page .slide').height($(window).innerHeight());
 
 			});
-			
+
 			// Update slide height on window resize
-			$(window).on('resize', function(){
+			$(window).on('resize', function() {
 				$('#page .slide').height($(window).innerHeight());
 			});
 		</script>
@@ -57,7 +61,7 @@
 				margin:0;
 				padding:0;
 			}
-			
+
 			#page {
 				width:100%;
 				overflow:hidden;
