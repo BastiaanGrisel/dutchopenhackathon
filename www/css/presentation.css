@@ -4,24 +4,24 @@ html, body {
   margin: 0;
   padding: 0; }
 
-#probeer_ook_eens {
+.probeer_ook_eens {
   width: 100%;
   height: 100%; }
-  #probeer_ook_eens .slide-container {
+  .probeer_ook_eens .slide-container {
     width: 100%;
     height: 100%;
     background-position: center;
     background-size: cover;
     background-repeat: none; }
-  #probeer_ook_eens .title-container {
+  .probeer_ook_eens .title-container {
     padding: 30px 0 30px 40px;
     background: white; }
-  #probeer_ook_eens .recipe-title span {
+  .probeer_ook_eens .recipe-title span {
     font-size: 90px;
     font-weight: bold; }
-  #probeer_ook_eens .prefix-title span {
+  .probeer_ook_eens .prefix-title span {
     font-size: 45px; }
-  #probeer_ook_eens .cooking-time {
+  .probeer_ook_eens .cooking-time {
     position: absolute;
     right: 40px;
     top: 30px;
