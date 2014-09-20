@@ -21,27 +21,31 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
-	<?php
-	if(!empty($_POST['s'])) {
-	?>
-	<script>
-		window.flightNumber = "<?php echo htmlentities($_POST['s']); ?>";
-	</script>
-	<?php
-	}
-	?>
-    </head>
-    <body>
+      <?php
+      if(!empty($_POST['s'])) {
+       ?>
+       <script>
+       window.flightNumber = "<?php echo htmlentities($_POST['s']); ?>";
+       </script>
+       <?php
+     }
+     ?>
+   </head>
+   <body>
+
+    <div id="slider">
 
       <div class="slide" id="probeer_ook_eens">
         <div class="container" style="background-image: url(https://frahmework.ah.nl/!data/recepten/jpg200/{{receptimageid}}.jpg);">
-          <div class="title prefix-title">
-            <span>Probeer ook eens...</span>
+          <div class="title-container">
+            <div class="title prefix-title">
+              <span>Probeer ook eens...</span>
+            </div>
+            <div class="title recipe-title">
+              <span>{{receptomschrijving}}</span>
+            </div>
+            <div class="cooking-time">{{recepttijd}}</div>
           </div>
-          <div class="title recipe-title">
-            <span>{{receptomschrijving}}</span>
-          </div>
-          <div class="cooking-time">{{recepttijd}}</div>
         </div>
       </div>
 
@@ -51,9 +55,11 @@
             <span>Zin in een snelle snack voor onderweg?</span>
           </div>
           <img src="http://www.sispr.nl/wp-content/uploads/2014/03/AH-To-Go-3-0-Logo-stacked1.jpg" />
-        <div>
+        </div>
       </div>
 
-      <script type="text/javascript" src="js/presentation.js"></script>
-    </body>
-    </html>
+    </div>
+
+    <script type="text/javascript" src="js/presentation.js"></script>
+  </body>
+  </html>
