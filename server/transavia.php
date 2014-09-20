@@ -49,6 +49,11 @@ class Transavia{
 		$data = file_get_contents($url);
 		return json_decode($data);
 	}
+
+	public static function getCountryCodeForJourney($journeyId){
+		$journey = self::getJourney($journeyId);
+		return $journey->DepartureStation;
+	}
 }
 
 ?>
