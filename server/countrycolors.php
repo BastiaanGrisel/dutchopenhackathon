@@ -128,10 +128,11 @@ class CountryColors
 				if ($H<0) $H++;
 				if ($H>1) $H--;
 			}
+			
+			$HSL['hue'] = round($H * 65535);
+			$HSL['sat'] = round($S * 255);
+			$HSL['bri'] = round($V * 255);
 
-			$HSL['H'] = round($H * 65535);
-			$HSL['S'] = round($S * 255);
-			$HSL['V'] = round($V * 255);
 
 			return $HSL;
 		}
