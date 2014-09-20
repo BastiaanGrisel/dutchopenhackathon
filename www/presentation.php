@@ -39,7 +39,7 @@
             <div class="title recipe-title">
               <span>{{receptomschrijving}}</span>
             </div>
-            <div class="cooking-time">{{recepttijd}}</div>
+            <div class="cooking-time">{{recepttijd}} min.</div>
           </div>
         </div>
       </div>
@@ -59,6 +59,24 @@
 		<script src="js/jquery.flexslider-min.js"></script>
 		<script>
 			jQuery(function($) {
+
+        flickr_url = "https://api.flickr.com/services/rest"
+
+        // $.ajax({
+        //   url: flickr_url,
+        //   dataType: "json",
+        //   data: {
+        //     method: "flickr.photos.search",
+        //     api_key: "025977b9a5e181b53a7597ecd4f8ae8f",
+        //     format: "json",
+        //     nojsoncallback: 1,
+        //     text: "cats",
+        //     extras: "url_o"
+        //   },
+        //   success: function(data) {
+        //     console.log(data);
+        //   }
+        // });
 
 				console.log(window);
 
