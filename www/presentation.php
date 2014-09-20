@@ -36,7 +36,7 @@
     <div id="slider">
 
       <div class="slide" id="probeer_ook_eens">
-        <div class="container" style="background-image: url(https://frahmework.ah.nl/!data/recepten/jpg200/{{receptimageid}}.jpg);">
+        <div class="slide-container" style="background-image: url(https://frahmework.ah.nl/!data/recepten/jpg200/{{receptimageid}}.jpg);">
           <div class="title-container">
             <div class="title prefix-title">
               <span>Probeer ook eens...</span>
@@ -50,7 +50,7 @@
       </div>
 
       <div class="slide" id="ah_to_go">
-        <div class="container"> 
+        <div class="slide-container"> 
           <div class="title">
             <span>Zin in een snelle snack voor onderweg?</span>
           </div>
