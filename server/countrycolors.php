@@ -32,7 +32,7 @@ class CountryColors
 
 				if(!@array_key_exists($tag, $colors)){
 					$colors[$tag] = 1;
-					$cRefs[$tag] = self::RGB_TO_HSV($color["red"], $color["green"], $color["blue"]);
+					$cRefs[$tag] = $color;
 				}else{
 					$colors[$tag]++;
 				}
@@ -86,7 +86,15 @@ class CountryColors
 		return "r" . $color["red"] . "g" . $color["green"] . "b" . $color["blue"];
 	}
 
-	private static function RGB_TO_HSV ($R, $G, $B)  // RGB Values:Number 0-255
+	public static function array_RGB_TO_HUE($colors){
+		foreach ($colors as $key => $value) {
+			$colors[$key] = self::RGB_TO_HUE($colors[$key]["red"], $colors[$key]["green"], $colors[$key]["blue"]);
+		}
+
+		return $colors;
+	}
+
+	public static function RGB_TO_HUE ($R, $G, $B)  // RGB Values:Number 0-255
 		{                                 // HSV Results:Number 0-1
 			$HSL = array();
 
@@ -120,10 +128,11 @@ class CountryColors
 				if ($H<0) $H++;
 				if ($H>1) $H--;
 			}
-
-			$HSL['hue'] = round($H * 255);
+			
+			$HSL['hue'] = round($H * 65535);
 			$HSL['sat'] = round($S * 255);
 			$HSL['bri'] = round($V * 255);
+
 
 			return $HSL;
 		}
