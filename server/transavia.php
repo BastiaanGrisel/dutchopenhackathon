@@ -51,7 +51,7 @@ class Transavia{
 	}
 
 	public static function getCountryCodeForJourney($journeyId){
-		$journey = self::getJourney($journeyId);
+		$journey = self::getJourney($journeyId)[0];
 		return $journey->DepartureStation;
 	}
 }
