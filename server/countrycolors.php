@@ -2,7 +2,7 @@
 /**
 * 
 */
-class CountryColors
+class CountryConverter
 {
 	public static function getMainColors($country){
 		
@@ -10,10 +10,11 @@ class CountryColors
 
 		$colors = self::topColors($flag);
 
-		echo json_encode($colors);
+		return $colors;
 	}
 
 	private static function getFlag($country){
+		$country = strtolower($country);
 		return @imagecreatefromgif("http://www.geonames.org/flags/x/" . $country . ".gif");
 	}
 
@@ -29,7 +30,7 @@ class CountryColors
 				$color = self::colorAt($image, $i, $j);
 				$tag = self::tagIt($color);
 
-				if(@array_key_exists($tag, $colors)){
+				if(!@array_key_exists($tag, $colors)){
 					$colors[$tag] = 1;
 					$cRefs[$tag] = self::RGB_TO_HSV($color["red"], $color["green"], $color["blue"]);
 				}else{
@@ -39,28 +40,41 @@ class CountryColors
 			}
 		}
 
-		$topColors = self::getTopKeys($colors);
+		$keys = self::getTopKeys($colors);
 
-			//Only select 2 colors
-		$topColors = array_slice($topColors, 0, 2);
-
-		return [$cRefs[$topColors[0]], $cRefs[$topColors[1]]];
+		return [$cRefs[$keys[0]], $cRefs[$keys[1]]];
 	}
 
+	//Shame for this function
 	private static function getTopKeys($colorArray){
 		foreach ($colorArray as $key => $value) {
-			if(!$highestColor) {
+			if(!$highestFreq) {
 				$highestFreq = $value;
-				$topColors[] = $key;
+				$topColorOne = $key;
 			}else{
 				if ($highestFreq <= $value) {
 					$highestFreq = $value;
-					$topColors[] = $key;
+					$topColorOne = $key;
 				}
 			}
 		}
 
-		return array_reverse($topColors);
+		$colorArray[$topColorOne] = 0;
+		$highestFreq = 0;
+
+		foreach ($colorArray as $key => $value) {
+			if(!$highestFreq) {
+				$highestFreq = $value;
+				$topColorTwo = $key;
+			}else{
+				if ($highestFreq <= $value) {
+					$highestFreq = $value;
+					$topColorTwo = $key;
+				}
+			}
+		}
+
+		return [$topColorOne, $topColorTwo];
 	}
 
 	private static function colorAt($image, $x, $y){
@@ -107,11 +121,11 @@ class CountryColors
 				if ($H>1) $H--;
 			}
 
-			$HSL['H'] = $H * 255;
-			$HSL['S'] = $S * 255;
-			$HSL['V'] = $V * 255;
+			$HSL['H'] = round($H * 255);
+			$HSL['S'] = round($S * 255);
+			$HSL['V'] = round($V * 255);
 
 			return $HSL;
 		}
 	}
-?>
+	?>
