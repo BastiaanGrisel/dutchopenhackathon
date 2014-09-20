@@ -1,0 +1,15 @@
+#probeer_ook_eens .container {
+  background: white;
+  padding: 30px 0 30px 40px; }
+#probeer_ook_eens .recipe-title span {
+  font-size: 90px;
+  font-weight: bold; }
+#probeer_ook_eens .prefix-title span {
+  font-size: 45px; }
+#probeer_ook_eens .cooking-time {
+  position: absolute;
+  right: 40px;
+  top: 30px;
+  width: auto;
+  height: 100px;
+  font-size: 50px; }
