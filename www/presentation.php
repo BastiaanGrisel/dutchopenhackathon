@@ -30,72 +30,107 @@
 
 		<div id="slider">
 
-      <div class="slide" id="probeer_ook_eens">
-        <div class="slide-container" style="background-image: url(https://frahmework.ah.nl/!data/recepten/jpg200/{{receptimageid}}.jpg);">
-          <div class="title-container">
-            <div class="title prefix-title">
-              <span>Probeer ook eens...</span>
-            </div>
-            <div class="title recipe-title">
-              <span>{{receptomschrijving}}</span>
-            </div>
-            <div class="cooking-time">{{recepttijd}}</div>
-          </div>
-        </div>
-      </div>
+		</div>
+		
+		<div style="display:none;">
+			
+			<div class="slide" id="probeer_ook_eens">
+				<div class="slide-container" style="background-image: url(https://frahmework.ah.nl/!data/recepten/jpg200/{{receptimageid}}.jpg);">
+					<div class="title-container">
+						<div class="title prefix-title">
+							<span>Probeer ook eens...</span>
+						</div>
+						<div class="title recipe-title">
+							<span>{{receptomschrijving}}</span>
+						</div>
+						<div class="cooking-time">{{recepttijd}}</div>
+					</div>
+				</div>
+			</div>
 
-      <div class="slide" id="ah_to_go">
-        <div class="slide-container"> 
-          <div class="title">
-            <span>Zin in een snelle snack voor onderweg?</span>
-          </div>
-          <img src="http://www.sispr.nl/wp-content/uploads/2014/03/AH-To-Go-3-0-Logo-stacked1.jpg" />
-        </div>
-      </div>
-
+			<div class="slide" id="ah_to_go">
+				<div class="slide-container"> 
+					<div class="title">
+						<span>Zin in een snelle snack voor onderweg?</span>
+					</div>
+					<img src="http://www.sispr.nl/wp-content/uploads/2014/03/AH-To-Go-3-0-Logo-stacked1.jpg" />
+				</div>
+			</div>
+			
 		</div>
 
 		<script type="text/javascript" src="js/presentation.js"></script>
 		<script src="js/jquery.flexslider-min.js"></script>
 		<script>
-			jQuery(function($) {
+				if (typeof window.flight)
+					jQuery(function($) {
+						
+						// Hide slider, show loading image
+						$('#slider').hide();
+						$('body').append('<div id="loading" style="position:absolute;width:100%;height:100%;z-index:10000;background:#fff url(\'img/loading.gif\') center no-repeat;"></div>')
 
-				console.log(window);
+						// Get recipes
+						$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 3}, function(recipes) {
+							
+							// Remove loading icon
+							$('#loading').remove();
+							
+							// Slider elem shortcut
+							$s = $('#slider');
 
-				$('#slider').hide();
-				$('body').append('<div id="loading" style="position:absolute;width:100%;height:100%;z-index:10000;background:#fff url(\'img/loading.gif\') center no-repeat;"></div>')
+							// Loop over recipes
+							$.each(recipes, function(i, v) {
+								
+								// Clone template div
+								$n = $('#' + getSlideType(v)).clone();
+								$n.addClass($n.attr('id'));
+								$n.removeAttr('id');
+								
+								// Append to slider
+								$s.append($n);
+								
+								// Parse with Mustache
+								$n.html(Mustache.render($n.html(), v));
+								
+							});
 
-				window.recipeRequest.done(function(data) {
-					console.log(data);
-					
-					$('#loading').remove();
-
-					$('#slider').flexslider({
-						selector: '.slide',
-						animation: 'fade',
-						slideshowSpeed: 5000,
-						controlNav: false,
-						directionNav: false,
-						useCSS: false,
-						before: function() {
-							$("#probeer_ook_eens").html(Mustache.render($("#probeer_ook_eens").html(), window.recipes[0]));
-						},
-						start: function() {
+							// Add slider functionality
+							$('#slider').flexslider({
+								selector: '.slide',
+								animation: 'fade',
+								slideshowSpeed: 5000,
+								controlNav: false,
+								directionNav: false,
+							});
+							
+							// Display slider
 							$('#slider').show();
-						}
+
+						});
+
 					});
-					
+
+				// Update slide height on window resize
+				$(window).on('resize', function() {
+					$('#slider .slide').height($(window).innerHeight());
 				});
-
 				// Set slide height
-				$('#slider .slide').height($(window).innerHeight());
+						$('#slider .slide').height($(window).innerHeight());
 
-			});
+				function getSlideType() {
 
-			// Update slide height on window resize
-			$(window).on('resize', function() {
-				$('#slider .slide').height($(window).innerHeight());
-			});
+					d = new Date();
+
+					return 'probeer_ook_eens';
+
+				}
+				
+				function getHighResImage(url) {
+					
+					result = $.load(url, '.responsive-image');
+					console.log(result);
+					
+				}
 		</script>
 	</body>
 </html>
