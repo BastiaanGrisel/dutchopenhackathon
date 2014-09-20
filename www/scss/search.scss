@@ -25,3 +25,9 @@ html,body {
 #hgu-search {
 	margin:-0 0 20%;
 }
+
+.ui-autocomplete {
+	max-height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
