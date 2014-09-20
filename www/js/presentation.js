@@ -21,10 +21,11 @@ $( document ).ready(function() {
 console.log(json_example);
 
 console.log($(json_example.recipes).size());
+console.log(json_example.recipes[0])
 
-$.get('slides/probeer_ook_eens.html', json_example 
+$.get('slides/probeer_ook_eens.php', json_example.recipes[0] 
 	).done(function(data) {
-		$('#slide').html(data);
+		$('body').html(data);
 		//console.log(data);
 	});
 
