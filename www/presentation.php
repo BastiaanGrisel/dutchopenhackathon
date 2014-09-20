@@ -33,19 +33,19 @@
     </head>
     <body>
 
-      <div id="probeer_ook_eens">
-        <div class="container" style="background-image: url('{{picture}}');">
+      <div class="slide" id="probeer_ook_eens">
+        <div class="container" style="background-image: url(https://frahmework.ah.nl/!data/recepten/jpg200/{{receptimageid}}.jpg);">
           <div class="title prefix-title">
             <span>Probeer ook eens...</span>
           </div>
           <div class="title recipe-title">
-            <span>{{title}}</span>
+            <span>{{receptomschrijving}}</span>
           </div>
-          <div class="cooking-time">{{time}}</div>
+          <div class="cooking-time">{{recepttijd}}</div>
         </div>
       </div>
 
-      <div id="ah_to_go">
+      <div class="slide" id="ah_to_go">
         <div class="container"> 
           <div class="title">
             <span>Zin in een snelle snack voor onderweg?</span>
