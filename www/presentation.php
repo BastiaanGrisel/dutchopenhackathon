@@ -60,22 +60,40 @@
 		<script>
 			jQuery(function($) {
 
-				$('#slider').flexslider({
-					selector: '.slide',
-					animation: 'fade',
-					slideshowSpeed: 1000,
-					controlNav: false,
-					directionNav: false,
-					useCSS: false
+				console.log(window);
+
+				$('#slider').hide();
+				$('body').append('<div id="loading" style="position:absolute;width:100%;height:100%;z-index:10000;background:#fff url(\'img/loading.gif\') center no-repeat;"></div>')
+
+				window.recipeRequest.done(function(data) {
+					console.log(data);
+					
+					$('#loading').remove();
+
+					$('#slider').flexslider({
+						selector: '.slide',
+						animation: 'fade',
+						slideshowSpeed: 1000,
+						controlNav: false,
+						directionNav: false,
+						useCSS: false,
+						before: function() {
+							$("#probeer_ook_eens").html(Mustache.render($("#probeer_ook_eens").html(), window.recipes[0]));
+						},
+						start: function() {
+							$('#slider').show();
+						}
+					});
+					
 				});
-				
+
 				// Set slide height
 				$('#slider .slide').height($(window).innerHeight());
 
 			});
-			
+
 			// Update slide height on window resize
-			$(window).on('resize', function(){
+			$(window).on('resize', function() {
 				$('#slider .slide').height($(window).innerHeight());
 			});
 		</script>
