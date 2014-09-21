@@ -4,41 +4,7 @@
 */
 class CountryColors
 {	
-	CONST $white = [
-		"red"=>255,
-		"green"=>255,
-		"blue"=>255
-	];
-	CONST $blue = [
-		"red"=>0,
-		"green"=>0,
-		"blue"=>255
-	];
-	CONST $red = [
-		"red"=>255,
-		"green"=>0,
-		"blue"=>0
-	];
-	CONST $green = [
-		"red"=>0,
-		"green"=>255,
-		"blue"=>0
-	];
-	CONST $yellow = [
-		"red"=>255,
-		"green"=>255,
-		"blue"=>0
-	];
-
-	private $flagColors = [
-		"nl" => [red, white, blue],
-		"fr" => [red, white, blue],
-		"it" => [red, white, green],
-		"es" => [red, yellow, red]
-	]
 	public static function getMainColors($country){
-		if(array_key_exists($country, $flagColors))
-			return $flagColors[$country];
 
 		$flag = self::getFlag($country);
 
@@ -46,8 +12,6 @@ class CountryColors
 
 		return $colors;
 	}
-
-	private static function hasColors
 
 	private static function getFlag($country){
 		$country = strtolower($country);
