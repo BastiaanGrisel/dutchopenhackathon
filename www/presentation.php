@@ -120,7 +120,6 @@
 
 		</div>
 
-		<script type="text/javascript" src="js/presentation.js"></script>
 		<script src="js/jquery.flexslider-min.js"></script>
 
 		<script>
