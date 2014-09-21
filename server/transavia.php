@@ -15,20 +15,18 @@ class Transavia{
 		$data = self::getJSONData($url);
 		$flightNumbers = self::getFlightNumberForJourneys($data);
 		return $flightNumbers;
-		// return $data;
 	}
 
 	private static function getFlightNumberForJourneys($journeys){
 		$flightNumbers = array();
 		foreach($journeys as $journey){
-			$flightNumbers[$journey->id] = self::getFlightNumberForJourney($journey->id);
+			$flightNumbers[] = array($journey->id, self::getFlightNumberForJourney($journey->id));
 		}	
-		var_dump($flightNumbers);
 		return $flightNumbers;
 	}
 
 	private static function getFlightNumberForJourney($journeyId){
-		$data = self::getJourney($journeyId);
+		$data = self::getJourney($journeyId)[0];
 		$flightNumber = $data->CarrierCode . $data->FlightNumber;
 		return $flightNumber;
 	}

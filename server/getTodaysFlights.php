@@ -6,13 +6,15 @@ include_once("transavia.php");
 
 $fileName = "cache/cache.json.todaysFlights";
 
+$cache = true;
+
 $flightIds = array();
-if(file_exists($fileName)){
+if(file_exists($fileName) && $cache){
 	$flightIds = json_decode(file_get_contents($fileName));
 } else {
 	$data = Transavia::getJourneysToKLM();
 	foreach($data as $flight){
-		$flightIds[] = array($flight->id, $flight->DepartureStation . " - " . $flight->ArrivalStation);
+		$flightIds[] = $flight;
 	}
 	file_put_contents($fileName, json_encode($flightIds));	
 }
