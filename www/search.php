@@ -34,7 +34,7 @@
 									<option id="loading">Loading..</option>
 								</select>
 								<span class="input-group-btn">
-									<button class="btn btn-primary" type="submit">Generate &rarr;</button>
+									<button class="btn btn-primary" type="submit" disabled>Generate &rarr;</button>
 								</span>
 							</div>
 						</form>
@@ -63,24 +63,10 @@
 				$.getJSON("../server/getTodaysFlights.php", function(data) {
 
 					$('#loading').remove();
+					$('button[type="submit"][disabled]').removeAttr('disabled');
 
 					$.each(data, function(i, v) {
 						$('#s').append('<option value="'+v[0]+'">'+v[1]+'</option>');
-					});
-
-					$("#s_dummy").autocomplete({
-						source: autocompleteData
-					});
-					
-					$("#s_dummy").on('change', function(){
-						
-						ind = autocompleteData.indexOf($(this).val());
-						
-						console.log(ind);
-					
-						
-						$('#s').val(flightIDs[autocompleteData.indexOf()]);
-						
 					});
 					
 				});
