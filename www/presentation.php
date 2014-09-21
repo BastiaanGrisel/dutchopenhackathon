@@ -83,13 +83,13 @@
 				<div class="slide-container">
 					<section id="recipe-top" class="recipe">
 
-						<div class="recipe-image">&nbsp;</div>
+						<div class="recipe-image" style="background-image:url('{{receptimagehd}}');">&nbsp;</div>
 						<div class="recipe-meta">
 							<div class="recipe-title">
-								<h1>kalkoenspies met spaanse aardappels</h1>
+								<h1>{{receptomschrijving}}</h1>
 							</div>
 							<div class="recipe-duration">
-								15 min
+								{{recepttijd}} min
 							</div>
 						</div>
 
@@ -101,14 +101,14 @@
 
 					<section id="recipe-btm" class="recipe">
 
-						<div class="recipe-image" style="background-image:url(http://www.ah.nl.kpnis.nl/static/recepten/img_054022_1600x560_JPG.jpg)">
+						<div class="recipe-image" style="background-image:url('{{receptimagehd}}');">
 
 							<div class="recipe-meta">
 								<div class="recipe-title">
-									<h1>gehakthachee met puree</h1>
+									<h1>{{receptomschrijving}}</h1>
 								</div>
 								<div class="recipe-duration">
-									15 min
+									{{recepttijd}} min
 								</div>
 							</div>
 
@@ -152,7 +152,7 @@
 					console.log(window);
 
 					// Get recipes
-					$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 3}, function(recipes) {
+					$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 4}, function(recipes) {
 
 						// Remove loading icon
 						$('#loading').remove();
@@ -161,18 +161,22 @@
 						$s = $('#slider');
 
 						// Loop over recipes
-						for(i = 0; i < recipes.length; i++) {
+						for(i = 0; i < recipes.length; i+=2) {
 
 							// Clone template div
 							$n = $('#ah').clone();
 							$n.addClass($n.attr('id'));
 							$n.removeAttr('id');
-
+							
 							// Append to slider
 							$s.append($n);
+							
+							$rtop = $n.find('#recipe-top');
+							$rbtm = $n.find('#recipe-btm');
 
 							// Parse with Mustache
-							$n.html(Mustache.render($n.html(), recipes[i]));
+							$rtop.html(Mustache.render($rtop.html(), recipes[i]));
+							$rbtm.html(Mustache.render($rbtm.html(), recipes[i+1]));
 
 						}
 

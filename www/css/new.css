@@ -18,7 +18,7 @@ body {
   text-align: center;
   font-family: "Frutiger LT Std";
   font-weight: 900;
-  font-size: 50px;
+  font-size: 60px;
   line-height: 1.1;
   font-stretch: condensed; }
   #header p {
@@ -34,7 +34,8 @@ body {
   .recipe .recipe-image {
     height: 100%;
     margin: 0 auto;
-    background: url(../img/new/test01.jpg) center top no-repeat;
+    background-position: center top;
+    background-repeat: no-repeat;
     background-size: cover;
     position: relative;
     opacity: 0.8; }
