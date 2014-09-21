@@ -16,7 +16,7 @@ body {
   overflow: hidden;
   position: relative;
   text-align: center;
-  font-family: "Frutiger LT Std";
+  font-family: "Frutiger LT Std", "Helvetica", sans-serif;
   font-weight: 900;
   font-size: 60px;
   line-height: 1.1;
