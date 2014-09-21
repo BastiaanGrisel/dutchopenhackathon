@@ -79,7 +79,7 @@ if (!empty($_POST['s'])) {
 					</section>
 
 					<header id="header">
-						<div style="display:table;width:100%;height:100%;"><div style="display:table-cell;width:100%;height:100%;vertical-align:middle;"><span style="color:#00A0E2;">Thuis op vakantie.</span> <span style="color:#6CCAF1;">Gewoon bij Albert Heijn.</span></div></div>
+						<div style="display:table;width:100%;height:100%;"><div style="display:table-cell;width:100%;height:100%;vertical-align:middle;"><span style="color:#00A0E2;">Thuis op vakantie.</span> <span style="color:#6CCAF1;">Gewoon bij <img style="margin:-20px 5px 0 5px;" draggable="false" src="img/new/ah_small.png"> Albert Heijn.</span></div></div>
 					</header>
 
 					<section id="recipe-btm" class="recipe">
