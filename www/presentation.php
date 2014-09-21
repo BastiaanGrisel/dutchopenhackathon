@@ -17,15 +17,17 @@
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/mustache.js"></script>
-		<?php
-		if (!empty($_POST['s'])) {
-			?>
-			<script>
+		<script>
+<?php
+if (!empty($_POST['s'])) {
+	?>
 				window.flightNumber = "<?php echo htmlentities($_POST['s']); ?>";
-			</script>
-			<?php
-		}
-		?>
+	<?php
+} else {
+	?>
+				window.alert('JE HEBT GEEN FLIGHTNUMBER GEKOZEN LULLO!');
+<?php } ?>
+		</script>
 	</head>
 	<body>
 
@@ -160,22 +162,22 @@
 						$s = $('#slider');
 
 						// Loop over recipes
-						for(i = 0; i < recipes.length; i+=2) {
+						for (i = 0; i < recipes.length; i += 2) {
 
 							// Clone template div
 							$n = $('#ah').clone();
 							$n.addClass($n.attr('id'));
 							$n.removeAttr('id');
-							
+
 							// Append to slider
 							$s.append($n);
-							
+
 							$rtop = $n.find('#recipe-top');
 							$rbtm = $n.find('#recipe-btm');
 
 							// Parse with Mustache
 							$rtop.html(Mustache.render($rtop.html(), recipes[i]));
-							$rbtm.html(Mustache.render($rbtm.html(), recipes[i+1]));
+							$rbtm.html(Mustache.render($rbtm.html(), recipes[i + 1]));
 
 						}
 
