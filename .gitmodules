@@ -1,0 +1,9 @@
+[submodule "server/bolapi"]
+	path = server/bolapi
+	url = git@github.com:devbolcom/bolcom-openapi-php-client.git
+[submodule "server/huephp"]
+	path = server/huephp
+	url = git@github.com:muesli/huephp.git
+[submodule "iso"]
+	path = iso
+	url = git@github.com:jasny/iso.git

@@ -2,9 +2,17 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include_once("transavia.php");
-include_once("countrycode.php");	
+include("countrycode.php");
 
-$data = CountryCode::getCountryCodeForIATA("AMS");
-var_dump($data);
+include_once("bolmanager.php");	
+
+$engl = Countries::getEnglishName("BE");
+$dutch = Countries::getDutchName("BE");
+
+echo $engl . $dutch;
+die();
+
+$data = BolManager::getProductsForCountry($search);
+echo json_encode($data->products);
+
 ?>
