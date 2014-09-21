@@ -17,8 +17,8 @@
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/mustache.js"></script>
-    <script type="text/javascript" src="js/kinetic.js"></script>
-    <script type="text/javascript" src="js/jquery.final-countdown.js"></script>
+		<script type="text/javascript" src="js/kinetic.js"></script>
+		<script type="text/javascript" src="js/jquery.final-countdown.js"></script>
 		<script>
 <?php
 if (!empty($_POST['s'])) {
@@ -49,13 +49,13 @@ if (!empty($_POST['s'])) {
             </div><!-- /.clock-item -->
         </div><!-- /.clock -->
 
-    <script type="text/javascript">
-      $('.countdown').final_countdown({
-            'start': 1362139200,
-            'end': 1388461320,
-            'now': 1387461319        
-        });
-    </script>
+		<script type="text/javascript">
+			$('.countdown').final_countdown({
+				'start': 1362139200,
+				'end': 1388461320,
+				'now': 1387461319
+			});
+		</script>
 
 		<div id="slider"></div>
 
@@ -129,121 +129,126 @@ if (!empty($_POST['s'])) {
 		<script src="js/jquery.flexslider-min.js"></script>
 
 		<script>
-			if (typeof window.flight)
-				jQuery(function($) {
+		if (typeof window.flight)
+			jQuery(function($) {
 
-					// Start the countdown
-					time = (Math.floor((Math.random() * 2700) + 900));
+				// Start the countdown
+				time = (Math.floor((Math.random() * 2700) + 900));
 
-					setInterval(function() {
-						time -= 1;
-						seconds = Math.floor(time % 60).toString().length == 1 ? "0" + Math.floor(time % 60) : Math.floor(time % 60);
-						$("#timer").html(Math.floor(time / 60) + ":" + seconds);
-					}, 1000);
+				setInterval(function() {
+					time -= 1;
+					seconds = Math.floor(time % 60).toString().length == 1 ? "0" + Math.floor(time % 60) : Math.floor(time % 60);
+					$("#timer").html(Math.floor(time / 60) + ":" + seconds);
+				}, 1000);
 
 
-					// Hide slider
-					$('#slider').hide();
+				// Hide slider
+				$('#slider').hide();
 
-					$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 4}, function(data) {
+				$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 4}, function(data) {
 
-						console.log(data);
+					if (typeof data.colors != "undefined") {
 
-						recipes = data.recepten;
-						bolcom = data.producten;
+						// Change HUE color
+						$.get("../server/setHue.php", data.colors);
+						console.log('Sending HUE colors...');
+					}
 
-						// Remove loading icon
-						$('#loading').remove();
+					recipes = data.recepten;
+					bolcom = data.producten;
 
-						// Slider elem shortcut
-						$s = $('#slider');
+					// Remove loading icon
+					$('#loading').remove();
 
-						if (recipes == null || typeof recipes != 'undefined' && recipes.length > 0) {
+					// Slider elem shortcut
+					$s = $('#slider');
 
-							// Loop over recipes
-							for (i = 0; i < recipes.length; i += 2) {
+					if (recipes == null || typeof recipes != 'undefined' && recipes.length > 0) {
 
-								// Clone template div
-								$n = $('#ah').clone();
-								$n.addClass($n.attr('id'));
-								$n.removeAttr('id');
+						// Loop over recipes
+						for (i = 0; i < recipes.length; i += 2) {
 
-								// Append to slider
-								$s.append($n);
+							// Clone template div
+							$n = $('#ah').clone();
+							$n.addClass($n.attr('id'));
+							$n.removeAttr('id');
 
-								$rtop = $n.find('#recipe-top');
-								$rbtm = $n.find('#recipe-btm');
+							// Append to slider
+							$s.append($n);
 
-								// Parse with Mustache
-								$rtop.html(Mustache.render($rtop.html(), recipes[i]));
-								$rbtm.html(Mustache.render($rbtm.html(), recipes[i + 1]));
+							$rtop = $n.find('#recipe-top');
+							$rbtm = $n.find('#recipe-btm');
 
-								$n.height($(window).innerHeight());
+							// Parse with Mustache
+							$rtop.html(Mustache.render($rtop.html(), recipes[i]));
+							$rbtm.html(Mustache.render($rbtm.html(), recipes[i + 1]));
 
-							}
-
-						}
-
-						if (typeof bolcom != 'undefined' && bolcom.length > 0) {
-
-							// Loop over bolcom
-							for (i = 0; i < bolcom.length; i += 3) {
-
-								// Only show slides with all three products
-								if (bolcom == null || typeof bolcom[i + i] == 'undefined' || typeof bolcom[i + 2] == 'undefined')
-									break;
-
-								// Clone template div
-								$n = $('#bol_com').clone();
-								$n.addClass($n.attr('id'));
-								$n.removeAttr('id');
-
-								// Append to slider
-								$s.append($n);
-
-								$p1 = $n.find('#product1');
-								$p2 = $n.find('#product2');
-								$p3 = $n.find('#product3');
-
-								// Parse with Mustache
-								$p1.html(Mustache.render($p1.html(), bolcom[i]));
-								$p2.html(Mustache.render($p2.html(), bolcom[i + 1]));
-								$p3.html(Mustache.render($p3.html(), bolcom[i + 2]));
-
-								$n.height($(window).innerHeight());
-
-							}
+							$n.height($(window).innerHeight());
 
 						}
 
-						// Add slider functionality
-						$('#slider').flexslider({
-							selector: '.slide',
-							animation: 'fade',
-							slideshowSpeed: 5000,
-							//controlNav: false,
-							directionNav: false,
-							keyboard: true,
-							multipleKeyboard: true
-						});
+					}
 
-						// Display slider
-						$('#slider').show();
+					if (typeof bolcom != 'undefined' && bolcom.length > 0) {
 
-						playAudio(data.spotify);
+						// Loop over bolcom
+						for (i = 0; i < bolcom.length; i += 3) {
+
+							// Only show slides with all three products
+							if (bolcom == null || typeof bolcom[i + i] == 'undefined' || typeof bolcom[i + 2] == 'undefined')
+								break;
+
+							// Clone template div
+							$n = $('#bol_com').clone();
+							$n.addClass($n.attr('id'));
+							$n.removeAttr('id');
+
+							// Append to slider
+							$s.append($n);
+
+							$p1 = $n.find('#product1');
+							$p2 = $n.find('#product2');
+							$p3 = $n.find('#product3');
+
+							// Parse with Mustache
+							$p1.html(Mustache.render($p1.html(), bolcom[i]));
+							$p2.html(Mustache.render($p2.html(), bolcom[i + 1]));
+							$p3.html(Mustache.render($p3.html(), bolcom[i + 2]));
+
+							$n.height($(window).innerHeight());
+
+						}
+
+					}
+
+					// Add slider functionality
+					$('#slider').flexslider({
+						selector: '.slide',
+						animation: 'fade',
+						slideshowSpeed: 5000,
+						//controlNav: false,
+						directionNav: false,
+						keyboard: true,
+						multipleKeyboard: true
 					});
 
+					// Display slider
+					$('#slider').show();
+
+					playAudio(data.spotify);
 				});
 
-			// Update slide height on window resize
-			$(window).on('resize', function() {
-				$('#slider .slide').height($(window).innerHeight());
 			});
 
-			function playAudio($url) {
-				var audio = new Audio($url);
-				audio.play();
-			}
+		// Update slide height on window resize
+		$(window).on('resize', function() {
+			$('#slider .slide').height($(window).innerHeight());
+		});
+
+		function playAudio($url) {
+			var audio = new Audio($url);
+			audio.play();
+		}
 
 		</script>
 
