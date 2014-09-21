@@ -62,7 +62,7 @@ if (!empty($_POST['s'])) {
 
 			<div class="slide" id="bol_com">
 				<div class="slide-container"> 
-					<div class="bol-header">Italiaanse producten, bij Bol.com</div>
+					<div class="bol-header">Neem je vakantie mee naar huis met Bol.com</div>
 					<div class="products">
 						<div id="product1" class="product">
 							<div class="product-title">{{title}}</div>
