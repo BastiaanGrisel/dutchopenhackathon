@@ -70,7 +70,8 @@ html, body {
 
 .bol_com {
 	font-family: 'Clarendon FS Medium',Georgia,serif;
-	background: #36c;
+	background: #36c url(../img/new/bol.png) bottom right no-repeat;
+	background-size:auto 120px;
 	text-align: center;
 
 	height: 100%;
@@ -84,15 +85,16 @@ html, body {
 	}
 
 	.products {
-		left: 1%;
+		padding:0 1%;
 		position: relative;
+		text-align:center;
 	}
 
 	.product { 
-		width: 30%;
+		width: 28%;
 		height: auto; 
-		float: left;
-		margin-left: 2%;
+		display:inline-block;
+		margin:0 2%;
 
 		img {
 			display: block;
