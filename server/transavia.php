@@ -5,7 +5,7 @@ class Transavia{
 	const KEY_ARRIVALSTATION = "ArrivalStation";
 	const KEY_DEPARTUREDAY = "DepartureDate";
 	const DESTINATION_AMS = "AMS";
-	const DEFAULT_DATE = "2014-06-24";
+	const DEFAULT_DATE = "2014-09-20";
 
 	// public static function getJourneyForFlightId($flightID){
 	// 	$url = BASE_URL + "journeys" + "/" + "?" + "filter" + "[where]";
@@ -21,7 +21,7 @@ class Transavia{
 	private static function getFlightNumberForJourneys($journeys){
 		$flightNumbers = array();
 		foreach($journeys as $journey){
-			$flightNumbers[] = array($journey->id, self::getFlightNumberForJourney($journey->id) . ", from" . $journey->DepartureDate);
+			$flightNumbers[] = array($journey->id, self::getFlightNumberForJourney($journey->id) . " (" . $journey->DepartureStation . ")");
 		}	
 		return $flightNumbers;
 	}
