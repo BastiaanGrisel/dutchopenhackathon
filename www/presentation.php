@@ -30,7 +30,7 @@
 
 <div id="slider"></div>
 
-<div style="display:none;">
+<div style="display: none">
 
   <div class="slide" id="probeer_ook_eens">
     <div class="slide-container" style="background-image: url({{receptimagehd}});">
@@ -52,6 +52,29 @@
         <span>Zin in een snelle snack voor onderweg?</span>
       </div>
       <img src="http://www.sispr.nl/wp-content/uploads/2014/03/AH-To-Go-3-0-Logo-stacked1.jpg" />
+    </div>
+  </div>
+
+  <div class="slide" id="bol_com">
+    <div class="slide-container"> 
+      <div class="bol-header">Italiaanse producten, bij Bol.com</div>
+      <div class="products">
+        <div id="product1" class="product">
+          <div class="product-title">Nerf N-Strike Elite Retaliator</div>
+          <img src="http://s.s-bol.com/imgbase0/imagebase/large/FC/5/1/5/6/1004004012376515.jpg" />
+          <div class="product-price">E149,00</div>
+        </div>
+        <div id="product1" class="product">
+          <div class="product-title">Nerf N-Strike Elite Retaliator</div>
+          <img src="http://s.s-bol.com/imgbase0/imagebase/large/FC/5/1/5/6/1004004012376515.jpg" />
+          <div class="product-price">E49,00</div>
+        </div>
+        <div id="product1" class="product">
+          <div class="product-title">Nerf N-Strike Elite Retaliator</div>
+          <img src="http://s.s-bol.com/imgbase0/imagebase/large/FC/5/1/5/6/1004004012376515.jpg" />
+          <div class="product-price">E49,00</div>
+        </div>
+      </div>
     </div>
   </div>
 
