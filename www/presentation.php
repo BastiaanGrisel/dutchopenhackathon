@@ -31,6 +31,8 @@ if (!empty($_POST['s'])) {
 	</head>
 	<body>
 
+		<div id="timer" style="font-weight: bold; position:absolute; top:0; left:0; font-size: 50px; background: white; z-index: 999; padding: 20px"></div>	
+
 		<div id="slider"></div>
 
 		<div style="display: none">
@@ -127,6 +129,17 @@ if (!empty($_POST['s'])) {
 		<script>
 			if (typeof window.flight)
 				jQuery(function($) {
+
+					// Start the countdown
+					time = (Math.floor((Math.random() * 2700) + 900));
+
+					setInterval(function(){
+						console.log(time);
+						time -= 1;
+						seconds = Math.floor(time % 60).toString().length == 1 ? "0"+Math.floor(time % 60) : Math.floor(time % 60);
+						$("#timer").html(Math.floor(time/60) + ":" + seconds);
+					}, 1000);
+					
 
 					// Hide slider, show loading image
 					$('#slider').hide();
