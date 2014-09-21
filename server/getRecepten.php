@@ -7,7 +7,7 @@ include_once("countrycolors.php");
 include_once("huemanager.php");
 include_once("bolmanager.php");
 include_once("spotify.php");
-
+include_once("schiphol.php");
 
 //Getting those annoying notices and warnings out of the way
 
@@ -30,6 +30,7 @@ if(file_exists($fileName)){
 	$jsonObject->colors->RGB = CountryColors::getMainColors($countryCode);
 	$jsonObject->colors->HUE = CountryColors::array_RGB_TO_HUE($jsonObject->colors->RGB);
 	$jsonObject->producten = BolManager::getProductsForCountry($search = Countries::getDutchName($countryCode));
+	//$jsonObject->bagbeltNumber = Schiphol::getBagbeltNumber($journeyCode);
 
 	file_put_contents($fileName, json_encode($jsonObject));	
 }

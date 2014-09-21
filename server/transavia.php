@@ -13,26 +13,25 @@ class Transavia{
 	public static function getJourneysToKLM(){
 		$url = self::BASE_URL . "journeys" . "/" . "?" . self::generateWhereFilter(self::KEY_ARRIVALSTATION, self::DESTINATION_AMS) . "&" . self::generateWhereFilter(self::KEY_DEPARTUREDAY, self::DEFAULT_DATE);
 		$data = self::getJSONData($url);
-//		$flightNumbers = self::getFlightNumberForJourneys($data);
-//		return $flightNumbers;
-		return $data;
+		$flightNumbers = self::getFlightNumberForJourneys($data);
+		return $flightNumbers;
+		// return $data;
 	}
 
-	// private static function getFlightNumberForJourneys($journeys){
-	// 	$flightNumbers = array();
-	// 	foreach($journeys as $journey){
-	// 		$flightNumbers[$journey->id] = self::getFlightNumberForJourney($journey->id);
-	// 	}	
-	// 	var_dump($flightNumbers);
-	// 	return $flightNumbers;
-	// }
+	private static function getFlightNumberForJourneys($journeys){
+		$flightNumbers = array();
+		foreach($journeys as $journey){
+			$flightNumbers[$journey->id] = self::getFlightNumberForJourney($journey->id);
+		}	
+		var_dump($flightNumbers);
+		return $flightNumbers;
+	}
 
-	// private static function getFlightNumberForJourney($journeyId){
-	// 	$data = self::getJourney($journeyId);
-	// 	$flightNumber = $data['CarrierCode'] . $data['FlightNumber'];
-	// 	echo $flightNumber;
-	// 	return $flightNumber;
-	// }
+	private static function getFlightNumberForJourney($journeyId){
+		$data = self::getJourney($journeyId);
+		$flightNumber = $data->CarrierCode . $data->FlightNumber;
+		return $flightNumber;
+	}
 
 	private static function generateWhereFilter($key, $value){
 		return "filter" . "[where]" . "[" . $key . "]" . "=" . $value;
@@ -54,6 +53,7 @@ class Transavia{
 		$journey = self::getJourney($journeyId)[0];
 		return $journey->DepartureStation;
 	}
+
 }
 
 ?>
