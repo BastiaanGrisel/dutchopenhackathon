@@ -111,9 +111,11 @@ if (!empty($_POST['s'])) {
 								<div class="recipe-title">
 									<h1>{{receptomschrijving}}</h1>
 								</div>
+								{{#recepttijd}}
 								<div class="recipe-duration">
 									{{recepttijd}} min
 								</div>
+								{{/recepttijd}}
 							</div>
 
 						</div>
@@ -133,18 +135,19 @@ if (!empty($_POST['s'])) {
 					// Start the countdown
 					time = (Math.floor((Math.random() * 2700) + 900));
 
-					setInterval(function(){
-						console.log(time);
+					setInterval(function() {
 						time -= 1;
-						seconds = Math.floor(time % 60).toString().length == 1 ? "0"+Math.floor(time % 60) : Math.floor(time % 60);
-						$("#timer").html(Math.floor(time/60) + ":" + seconds);
+						seconds = Math.floor(time % 60).toString().length == 1 ? "0" + Math.floor(time % 60) : Math.floor(time % 60);
+						$("#timer").html(Math.floor(time / 60) + ":" + seconds);
 					}, 1000);
-					
+
 
 					// Hide slider
 					$('#slider').hide();
-					
+
 					$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 4}, function(data) {
+
+						console.log(data);
 
 						recipes = data.recepten;
 						bolcom = data.producten;
@@ -155,54 +158,62 @@ if (!empty($_POST['s'])) {
 						// Slider elem shortcut
 						$s = $('#slider');
 
-						// Loop over recipes
-						for (i = 0; i < recipes.length; i += 2) {
+						if (recipes == null || typeof recipes != 'undefined' && recipes.length > 0) {
 
-							// Clone template div
-							$n = $('#ah').clone();
-							$n.addClass($n.attr('id'));
-							$n.removeAttr('id');
+							// Loop over recipes
+							for (i = 0; i < recipes.length; i += 2) {
 
-							// Append to slider
-							$s.append($n);
+								// Clone template div
+								$n = $('#ah').clone();
+								$n.addClass($n.attr('id'));
+								$n.removeAttr('id');
 
-							$rtop = $n.find('#recipe-top');
-							$rbtm = $n.find('#recipe-btm');
+								// Append to slider
+								$s.append($n);
 
-							// Parse with Mustache
-							$rtop.html(Mustache.render($rtop.html(), recipes[i]));
-							$rbtm.html(Mustache.render($rbtm.html(), recipes[i + 1]));
-							
-							$n.height($(window).innerHeight());
-							
+								$rtop = $n.find('#recipe-top');
+								$rbtm = $n.find('#recipe-btm');
+
+								// Parse with Mustache
+								$rtop.html(Mustache.render($rtop.html(), recipes[i]));
+								$rbtm.html(Mustache.render($rbtm.html(), recipes[i + 1]));
+
+								$n.height($(window).innerHeight());
+
+							}
+
 						}
-						
-						// Loop over bolcom
-						for (i = 0; i < bolcom.length; i += 3) {
-							
-							// Only show slides with all three products
-							if(typeof bolcom[i + i] == 'undefined' || typeof bolcom[i+2] == 'undefined')
-								break;
-							
-							// Clone template div
-							$n = $('#bol_com').clone();
-							$n.addClass($n.attr('id'));
-							$n.removeAttr('id');
 
-							// Append to slider
-							$s.append($n);
-							
-							$p1 = $n.find('#product1');
-							$p2 = $n.find('#product2');
-							$p3 = $n.find('#product3');
+						if (typeof bolcom != 'undefined' && bolcom.length > 0) {
 
-							// Parse with Mustache
-							$p1.html(Mustache.render($p1.html(), bolcom[i]));
-							$p2.html(Mustache.render($p2.html(), bolcom[i+1]));
-							$p3.html(Mustache.render($p3.html(), bolcom[i+2]));
-							
-							$n.height($(window).innerHeight());
-							
+							// Loop over bolcom
+							for (i = 0; i < bolcom.length; i += 3) {
+
+								// Only show slides with all three products
+								if (bolcom == null || typeof bolcom[i + i] == 'undefined' || typeof bolcom[i + 2] == 'undefined')
+									break;
+
+								// Clone template div
+								$n = $('#bol_com').clone();
+								$n.addClass($n.attr('id'));
+								$n.removeAttr('id');
+
+								// Append to slider
+								$s.append($n);
+
+								$p1 = $n.find('#product1');
+								$p2 = $n.find('#product2');
+								$p3 = $n.find('#product3');
+
+								// Parse with Mustache
+								$p1.html(Mustache.render($p1.html(), bolcom[i]));
+								$p2.html(Mustache.render($p2.html(), bolcom[i + 1]));
+								$p3.html(Mustache.render($p3.html(), bolcom[i + 2]));
+
+								$n.height($(window).innerHeight());
+
+							}
+
 						}
 
 						// Add slider functionality
@@ -227,13 +238,13 @@ if (!empty($_POST['s'])) {
 				$('#slider .slide').height($(window).innerHeight());
 			});
 
-			function playAudio($url){
+			function playAudio($url) {
 				var audio = new Audio($url);
 				audio.play();
 			}
 
 		</script>
-		
+
 		<div id="loading" style="position:absolute;width:100%;height:100%;z-index:10000;background:#fff url('img/loading.gif') center no-repeat;"></div>
 	</body>
 </html>
