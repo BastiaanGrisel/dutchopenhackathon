@@ -197,6 +197,7 @@ if (!empty($_POST['s'])) {
 						// Display slider
 						$('#slider').show();
 
+						playAudio(data.spotify);
 					});
 
 				});
@@ -205,6 +206,11 @@ if (!empty($_POST['s'])) {
 			$(window).on('resize', function() {
 				$('#slider .slide').height($(window).innerHeight());
 			});
+
+			function playAudio($url){
+				var audio = new Audio($url);
+				audio.play();
+			}
 
 		</script>
 	</body>

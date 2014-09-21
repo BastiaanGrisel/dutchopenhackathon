@@ -31,6 +31,7 @@ if(file_exists($fileName)){
 	$jsonObject->colors->RGB = CountryColors::getMainColors($countryCode);
 	$jsonObject->colors->HUE = CountryColors::array_RGB_TO_HUE($jsonObject->colors->RGB);
 	$jsonObject->producten = BolManager::getProductsForCountry($search = Countries::getDutchName($countryCode));
+	$jsonObject->spotify = Spotify::getTrack($countryCode);
 
 	file_put_contents($fileName, json_encode($jsonObject));	
 }
