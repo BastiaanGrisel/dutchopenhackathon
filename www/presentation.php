@@ -64,18 +64,18 @@ if (!empty($_POST['s'])) {
 					<div class="products">
 						<div id="product1" class="product">
 							<div class="product-title">{{title}}</div>
-							<img src="{{images.0.url}}" />
-							<div class="product-price">&euro; {{offerData.offers.2.price}}</div>
+							<img src="{{images.2.url}}" />
+							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
 						<div id="product2" class="product">
 							<div class="product-title">{{title}}</div>
-							<img src="{{images.0.url}}" />
-							<div class="product-price">&euro; {{offerData.offers.2.price}}</div>
+							<img src="{{images.2.url}}" />
+							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
 						<div id="product3" class="product">
 							<div class="product-title">{{title}}</div>
-							<img src="{{images.0.url}}" />
-							<div class="product-price">&euro; {{offerData.offers.2.price}}</div>
+							<img src="{{images.2.url}}" />
+							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
 					</div>
 				</div>
