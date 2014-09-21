@@ -96,7 +96,7 @@
 					</section>
 
 					<header id="header">
-						<p><span style="color:#00A0E2;">De beste aanbiedingen van Nederland.</span> <span style="color:#6CCAF1;">Gewoon bij Albert Heijn.</span></p>
+						<div style="display:table;width:100%;height:100%;"><div style="display:table-cell;width:100%;height:100%;vertical-align:middle;"><span style="color:#00A0E2;">De beste aanbiedingen van Nederland.</span> <span style="color:#6CCAF1;">Gewoon bij Albert Heijn.</span></div></div>
 					</header>
 
 					<section id="recipe-btm" class="recipe">
