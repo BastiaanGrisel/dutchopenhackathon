@@ -178,7 +178,9 @@ if (!empty($_POST['s'])) {
 							// Parse with Mustache
 							$rtop.html(Mustache.render($rtop.html(), recipes[i]));
 							$rbtm.html(Mustache.render($rbtm.html(), recipes[i + 1]));
-
+							
+							$n.height($(window).innerHeight());
+							
 						}
 
 						// Add slider functionality
