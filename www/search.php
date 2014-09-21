@@ -31,7 +31,7 @@
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">Flight no.</span>
 								<select type="text" class="form-control" id="s" name="s" placeholder="e.g. HV 1357">
-									
+									<option id="loading">Loading..</option>
 								</select>
 								<span class="input-group-btn">
 									<button class="btn btn-primary" type="submit">Generate &rarr;</button>
@@ -61,6 +61,8 @@
 				flightIDs = new Array();
 
 				$.getJSON("../server/getTodaysFlights.php", function(data) {
+
+					$('#loading').remove();
 
 					$.each(data, function(i, v) {
 						$('#s').append('<option value="'+v[0]+'">'+v[1]+'</option>');
