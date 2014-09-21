@@ -30,7 +30,9 @@
 						<form id="hgu-search" method="post" action="presentation.php">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon">Flight no.</span>
-								<input type="text" class="form-control" id="s" name="s" placeholder="e.g. HV 1357">
+								<select type="text" class="form-control" id="s" name="s" placeholder="e.g. HV 1357">
+									
+								</select>
 								<span class="input-group-btn">
 									<button class="btn btn-primary" type="submit">Generate &rarr;</button>
 								</span>
@@ -55,16 +57,28 @@
 			jQuery(function($) {
 
 				console.log('Preparing to get JSON.');
-				flightData = new Array();
+				autocompleteData = new Array();
+				flightIDs = new Array();
 
 				$.getJSON("../server/getTodaysFlights.php", function(data) {
 
 					$.each(data, function(i, v) {
-						flightData[i] = v[0];
+						$('#s').append('<option value="'+v[0]+'">'+v[1]+'</option>');
 					});
 
-					$("#s").autocomplete({
-						source: flightData
+					$("#s_dummy").autocomplete({
+						source: autocompleteData
+					});
+					
+					$("#s_dummy").on('change', function(){
+						
+						ind = autocompleteData.indexOf($(this).val());
+						
+						console.log(ind);
+					
+						
+						$('#s').val(flightIDs[autocompleteData.indexOf()]);
+						
 					});
 					
 				});
