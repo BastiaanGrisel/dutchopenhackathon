@@ -18,15 +18,22 @@ $numberOfRecipes = $_REQUEST['numberOfRecipes'];
 $airportCode = Transavia::getCountryCodeForJourney($flightId);
 $countryCode = CountryCode::getCountryCodeForIATA($airportCode);
 
+$fileName = "cache/cache.json." . $flightId . $numberOfRecipes;
+
 $jsonObject = new StdClass();
+if(file_exists($fileName)){
+	$jsonObject = json_decode(file_get_contents($fileName));
+} else {
+	$jsonObject->recepten = Recepten::getReceptenForCountry($countryCode, $numberOfRecipes);
+	$jsonObject->colors->RGB = CountryColors::getMainColors($countryCode);
+	$jsonObject->colors->HUE = CountryColors::array_RGB_TO_HUE($jsonObject->colors->RGB);
+	$jsonObject->producten = BolManager::getProductsForCountry($search = Countries::getDutchName($countryCode));
 
-
-$jsonObject->recepten = Recepten::getReceptenForCountry($countryCode, $numberOfRecipes);
-$jsonObject->colors->RGB = CountryColors::getMainColors($countryCode);
-$jsonObject->colors->HUE = CountryColors::array_RGB_TO_HUE($jsonObject->colors->RGB);
-$jsonObject->producten = BolManager::getProductsForCountry($search = Countries::getDutchName($countryCode));
+	file_put_contents($fileName, json_encode($jsonObject));	
+}
 
 //HueManager::setColors($jsonObject->colors->HUE);
+
 
 echo json_encode($jsonObject);
 
