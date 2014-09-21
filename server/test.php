@@ -2,12 +2,17 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-include_once("huemanager.php");	
-include_once("countrycolors.php");
+include("countrycode.php");
 
-$colors = CountryColors::getMainColors("BR");
-$colors = CountryColors::array_RGB_TO_HUE($colors);
-echo json_encode($colors);
-HueManager::setColors($colors);
+include_once("bolmanager.php");	
+
+$engl = Countries::getEnglishName("BE");
+$dutch = Countries::getDutchName("BE");
+
+echo $engl . $dutch;
+die();
+
+$data = BolManager::getProductsForCountry($search);
+echo json_encode($data->products);
 
 ?>
