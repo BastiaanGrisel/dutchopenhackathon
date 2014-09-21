@@ -3,22 +3,58 @@
 * 
 */
 class CountryColors
-{
+{	
+	CONST $white = [
+		"red"=>255,
+		"green"=>255,
+		"blue"=>255
+	];
+	CONST $blue = [
+		"red"=>0,
+		"green"=>0,
+		"blue"=>255
+	];
+	CONST $red = [
+		"red"=>255,
+		"green"=>0,
+		"blue"=>0
+	];
+	CONST $green = [
+		"red"=>0,
+		"green"=>255,
+		"blue"=>0
+	];
+	CONST $yellow = [
+		"red"=>255,
+		"green"=>255,
+		"blue"=>0
+	];
+
+	private $flagColors = [
+		"nl" => [red, white, blue],
+		"fr" => [red, white, blue],
+		"it" => [red, white, green],
+		"es" => [red, yellow, red]
+	]
 	public static function getMainColors($country){
-		
+		if(array_key_exists($country, $flagColors))
+			return $flagColors[$country];
+
 		$flag = self::getFlag($country);
 
-		$colors = self::topColors($flag);
+		$colors = self::topColors($flag, 3);
 
 		return $colors;
 	}
+
+	private static function hasColors
 
 	private static function getFlag($country){
 		$country = strtolower($country);
 		return @imagecreatefromgif("http://www.geonames.org/flags/x/" . $country . ".gif");
 	}
 
-	private static function topColors($image){
+	private static function topColors($image, $topCount){
 		$iDimensions[] = imagesx($image);
 		$iDimensions[] = imagesy($image);
 
@@ -40,41 +76,18 @@ class CountryColors
 			}
 		}
 
-		$keys = self::getTopKeys($colors);
+		$keys = self::getTopKeys($colors, $topCount);
 
-		return [$cRefs[$keys[0]], $cRefs[$keys[1]]];
+		return [$cRefs[$keys[0]], $cRefs[$keys[1]], $cRefs[$keys[2]]];
 	}
 
 	//Shame for this function
-	private static function getTopKeys($colorArray){
-		foreach ($colorArray as $key => $value) {
-			if(!$highestFreq) {
-				$highestFreq = $value;
-				$topColorOne = $key;
-			}else{
-				if ($highestFreq <= $value) {
-					$highestFreq = $value;
-					$topColorOne = $key;
-				}
-			}
+	private static function getTopKeys($colorArray, $topCount){
+		for ($i=0; $i < $topCount; $i++) { 
+			$topColors[] = array_keys($colorArray, max($colorArray))[0];
+			$colorArray[$topColors[count($topColors) - 1]] = 0;
 		}
-
-		$colorArray[$topColorOne] = 0;
-		$highestFreq = 0;
-
-		foreach ($colorArray as $key => $value) {
-			if(!$highestFreq) {
-				$highestFreq = $value;
-				$topColorTwo = $key;
-			}else{
-				if ($highestFreq <= $value) {
-					$highestFreq = $value;
-					$topColorTwo = $key;
-				}
-			}
-		}
-
-		return [$topColorOne, $topColorTwo];
+		return $topColors;
 	}
 
 	private static function colorAt($image, $x, $y){
