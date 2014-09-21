@@ -153,7 +153,9 @@ if (!empty($_POST['s'])) {
 					console.log(window);
 
 					// Get recipes
-					$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 4}, function(recipes) {
+					$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 4}, function(data) {
+
+						recipes = data.recepten;
 
 						// Remove loading icon
 						$('#loading').remove();
@@ -189,10 +191,7 @@ if (!empty($_POST['s'])) {
 							animation: 'fade',
 							slideshowSpeed: 5000,
 							controlNav: false,
-							directionNav: false,
-							added: function() {
-								$('#slider .slide').height($(window).innerHeight());
-							}
+							directionNav: false
 						});
 
 						// Display slider
@@ -206,11 +205,7 @@ if (!empty($_POST['s'])) {
 			$(window).on('resize', function() {
 				$('#slider .slide').height($(window).innerHeight());
 			});
-			$(window).on('load', function() {
-				$('#slider .slide').height($(window).innerHeight());
-			});
-			// Set slide height
-			$('#slider .slide').height($(window).innerHeight());
+
 		</script>
 	</body>
 </html>
