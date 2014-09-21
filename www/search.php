@@ -44,6 +44,11 @@
 				</div>
 
 			</div>
+
+		</div>
+
+		<div id="hue">
+			powered by <img src="img/new/huehue.png">
 		</div>
 
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -66,9 +71,9 @@
 					$('button[type="submit"][disabled]').removeAttr('disabled');
 
 					$.each(data, function(i, v) {
-						$('#s').append('<option value="'+v[0]+'">'+v[1]+'</option>');
+						$('#s').append('<option value="' + v[0] + '">' + v[1] + '</option>');
 					});
-					
+
 				});
 
 			});
