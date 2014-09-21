@@ -57,6 +57,9 @@ class Recepten{
 			case 'th':
 				$kitchen = "Thaise";
 				break;
+			case 'pt':
+				$kitchen = "Portugese";
+				break;
 			default:
 				$kitchen = "Hollandse";
 				break;

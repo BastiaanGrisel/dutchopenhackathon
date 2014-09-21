@@ -69,9 +69,11 @@ if (!empty($_POST['s'])) {
 							<div class="recipe-title">
 								<h1>{{receptomschrijving}}</h1>
 							</div>
+							{{#recepttijd}}
 							<div class="recipe-duration">
 								{{recepttijd}} min
 							</div>
+							{{/recepttijd}}
 						</div>
 
 					</section>
