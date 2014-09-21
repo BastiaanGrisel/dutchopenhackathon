@@ -96,7 +96,7 @@ html, body {
 
 		img {
 			display: block;
-			height: 600px;
+			height: 550px;
 			margin: 0 auto;
 		}
 
@@ -105,13 +105,15 @@ html, body {
 			font-size: 35px;
 			padding: 0 0 25px 5px;
 			color: black;
+			line-height:1;
+			height:80px;
 		}
 
 		.product-price {
 			font-weight: bold;
 			font-size: 30px;
 
-			 -webkit-border-radius: 75px;
+			 border-radius: 75px;
 			 width: 150px;
 			 height: 150px;
 			 background: #FF6F00;

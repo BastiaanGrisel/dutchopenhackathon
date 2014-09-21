@@ -37,46 +37,23 @@ if (!empty($_POST['s'])) {
 
 		<div style="display: none">
 
-			<div class="slide" id="probeer_ook_eens">
-				<div class="slide-container" style="background-image: url({{receptimagehd}});">
-					<div class="title-container">
-						<div class="title prefix-title">
-							<span>Probeer ook eens...</span>
-						</div>
-						<div class="title recipe-title">
-							<span>{{receptomschrijving}}</span>
-						</div>
-						<div class="cooking-time">{{recepttijd}} min.</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="slide" id="ah_to_go">
-				<div class="slide-container"> 
-					<div class="title">
-						<span>Zin in een snelle snack voor onderweg?</span>
-					</div>
-					<img src="http://www.sispr.nl/wp-content/uploads/2014/03/AH-To-Go-3-0-Logo-stacked1.jpg" />
-				</div>
-			</div>
-
 			<div class="slide" id="bol_com">
 				<div class="slide-container"> 
 					<div class="bol-header">Neem je vakantie mee naar huis met Bol.com</div>
 					<div class="products">
 						<div id="product1" class="product">
 							<div class="product-title">{{title}}</div>
-							<img src="{{images.2.url}}" />
+							<img src="{{images.4.url}}" />
 							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
 						<div id="product2" class="product">
 							<div class="product-title">{{title}}</div>
-							<img src="{{images.2.url}}" />
+							<img src="{{images.4.url}}" />
 							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
 						<div id="product3" class="product">
 							<div class="product-title">{{title}}</div>
-							<img src="{{images.2.url}}" />
+							<img src="{{images.4.url}}" />
 							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
 					</div>
@@ -100,7 +77,7 @@ if (!empty($_POST['s'])) {
 					</section>
 
 					<header id="header">
-						<div style="display:table;width:100%;height:100%;"><div style="display:table-cell;width:100%;height:100%;vertical-align:middle;"><span style="color:#00A0E2;">De beste aanbiedingen van Nederland.</span> <span style="color:#6CCAF1;">Gewoon bij Albert Heijn.</span></div></div>
+						<div style="display:table;width:100%;height:100%;"><div style="display:table-cell;width:100%;height:100%;vertical-align:middle;"><span style="color:#00A0E2;">Thuis op vakantie.</span> <span style="color:#6CCAF1;">Gewoon bij Albert Heijn.</span></div></div>
 					</header>
 
 					<section id="recipe-btm" class="recipe">
@@ -221,8 +198,10 @@ if (!empty($_POST['s'])) {
 							selector: '.slide',
 							animation: 'fade',
 							slideshowSpeed: 5000,
-							controlNav: false,
-							directionNav: false
+							//controlNav: false,
+							directionNav: false,
+							keyboard:true,
+							multipleKeyboard: true
 						});
 
 						// Display slider
