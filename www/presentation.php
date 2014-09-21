@@ -65,19 +65,19 @@ if (!empty($_POST['s'])) {
 					<div class="bol-header">Italiaanse producten, bij Bol.com</div>
 					<div class="products">
 						<div id="product1" class="product">
-							<div class="product-title">Nerf N-Strike Elite Retaliator</div>
-							<img src="http://s.s-bol.com/imgbase0/imagebase/large/FC/5/1/5/6/1004004012376515.jpg" />
-							<div class="product-price">E149,00</div>
+							<div class="product-title">{{title}}</div>
+							<img src="{{images.2.url}}" />
+							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
-						<div id="product1" class="product">
-							<div class="product-title">Nerf N-Strike Elite Retaliator</div>
-							<img src="http://s.s-bol.com/imgbase0/imagebase/large/FC/5/1/5/6/1004004012376515.jpg" />
-							<div class="product-price">E49,00</div>
+						<div id="product2" class="product">
+							<div class="product-title">{{title}}</div>
+							<img src="{{images.2.url}}" />
+							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
-						<div id="product1" class="product">
-							<div class="product-title">Nerf N-Strike Elite Retaliator</div>
-							<img src="http://s.s-bol.com/imgbase0/imagebase/large/FC/5/1/5/6/1004004012376515.jpg" />
-							<div class="product-price">E49,00</div>
+						<div id="product3" class="product">
+							<div class="product-title">{{title}}</div>
+							<img src="{{images.2.url}}" />
+							<div class="product-price">&euro; {{offerData.offers.0.price}}</div>
 						</div>
 					</div>
 				</div>
@@ -141,34 +141,13 @@ if (!empty($_POST['s'])) {
 					}, 1000);
 					
 
-					// Hide slider, show loading image
+					// Hide slider
 					$('#slider').hide();
-					$('body').append('<div id="loading" style="position:absolute;width:100%;height:100%;z-index:10000;background:#fff url(\'img/loading.gif\') center no-repeat;"></div>')
-
-					flickr_url = "https://api.flickr.com/services/rest"
-
-					// $.ajax({
-					//   url: flickr_url,
-					//   dataType: "json",
-					//   data: {
-					//     method: "flickr.photos.search",
-					//     api_key: "025977b9a5e181b53a7597ecd4f8ae8f",
-					//     format: "json",
-					//     nojsoncallback: 1,
-					//     text: "cats",
-					//     extras: "url_o"
-					//   },
-					//   success: function(data) {
-					//     console.log(data);
-					//   }
-					// });
-
-					console.log(window);
-
-					// Get recipes
+					
 					$.getJSON("../server/getRecepten.php", {flightId: window.flightNumber, numberOfRecipes: 4}, function(data) {
 
 						recipes = data.recepten;
+						bolcom = data.producten;
 
 						// Remove loading icon
 						$('#loading').remove();
@@ -193,6 +172,34 @@ if (!empty($_POST['s'])) {
 							// Parse with Mustache
 							$rtop.html(Mustache.render($rtop.html(), recipes[i]));
 							$rbtm.html(Mustache.render($rbtm.html(), recipes[i + 1]));
+							
+							$n.height($(window).innerHeight());
+							
+						}
+						
+						// Loop over bolcom
+						for (i = 0; i < bolcom.length; i += 3) {
+							
+							// Only show slides with all three products
+							if(typeof bolcom[i + i] == 'undefined' || typeof bolcom[i+2] == 'undefined')
+								break;
+							
+							// Clone template div
+							$n = $('#bol_com').clone();
+							$n.addClass($n.attr('id'));
+							$n.removeAttr('id');
+
+							// Append to slider
+							$s.append($n);
+							
+							$p1 = $n.find('#product1');
+							$p2 = $n.find('#product2');
+							$p3 = $n.find('#product3');
+
+							// Parse with Mustache
+							$p1.html(Mustache.render($p1.html(), bolcom[i]));
+							$p2.html(Mustache.render($p2.html(), bolcom[i+1]));
+							$p3.html(Mustache.render($p3.html(), bolcom[i+2]));
 							
 							$n.height($(window).innerHeight());
 							
@@ -226,5 +233,7 @@ if (!empty($_POST['s'])) {
 			}
 
 		</script>
+		
+		<div id="loading" style="position:absolute;width:100%;height:100%;z-index:10000;background:#fff url('img/loading.gif') center no-repeat;"></div>
 	</body>
 </html>

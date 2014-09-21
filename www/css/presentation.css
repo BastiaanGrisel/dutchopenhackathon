@@ -42,36 +42,36 @@ html, body {
   display: block;
   width: 25%; }
 
-#bol_com {
+.bol_com {
   font-family: 'Clarendon FS Medium', Georgia, serif;
   background: #36c;
   text-align: center;
   height: 100%;
   width: 100%; }
-  #bol_com .bol-header {
+  .bol_com .bol-header {
     font-weight: bold;
     color: white;
     font-size: 70px;
     padding: 60px 0 60px 0; }
-  #bol_com .products {
+  .bol_com .products {
     text-align: left;
     left: 1%;
     position: relative; }
-  #bol_com .product {
+  .bol_com .product {
     width: 30%;
     height: auto;
     float: left;
     margin-left: 2%; }
-    #bol_com .product img {
+    .bol_com .product img {
       display: block;
       width: 100%;
       max-height: 300px; }
-    #bol_com .product .product-title {
+    .bol_com .product .product-title {
       font-weight: bold;
       font-size: 30px;
       padding: 0 0 10px 5px;
       color: black; }
-    #bol_com .product .product-price {
+    .bol_com .product .product-price {
       font-weight: bold;
       font-size: 30px;
       -webkit-border-radius: 75px;
