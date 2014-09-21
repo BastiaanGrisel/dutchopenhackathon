@@ -1,4 +1,5 @@
 <?php
+include_once("countrycode.php");
 class Transavia{
 	const BASE_URL = 'http://api.transapia.nl:80/api/';
 	const KEY_ARRIVALSTATION = "ArrivalStation";
@@ -20,12 +21,12 @@ class Transavia{
 	private static function getFlightNumberForJourneys($journeys){
 		$flightNumbers = array();
 		foreach($journeys as $journey){
-			$flightNumbers[] = array($journey->id, self::getFlightNumberForJourney($journey->id));
+			$flightNumbers[] = array($journey->id, self::getFlightNumberForJourney($journey->id) . ", from" . $journey->DepartureDate);
 		}	
 		return $flightNumbers;
 	}
 
-	private static function getFlightNumberForJourney($journeyId){
+	public static function getFlightNumberForJourney($journeyId){
 		$data = self::getJourney($journeyId)[0];
 		$flightNumber = $data->CarrierCode . $data->FlightNumber;
 		return $flightNumber;
