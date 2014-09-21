@@ -17,6 +17,8 @@
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="js/bootstrap.min.js"></script>
 		<script src="js/mustache.js"></script>
+    <script type="text/javascript" src="js/kinetic.js"></script>
+    <script type="text/javascript" src="js/jquery.final-countdown.js"></script>
 		<script>
 <?php
 if (!empty($_POST['s'])) {
@@ -31,7 +33,29 @@ if (!empty($_POST['s'])) {
 	</head>
 	<body>
 
-		<div id="timer" style="font-weight: bold; position:absolute; top:0; left:0; font-size: 50px; background: white; z-index: 999; padding: 20px"></div>	
+		<!-- <div id="timer" style="font-weight: bold; position:absolute; top:0; left:0; font-size: 50px; background: white; z-index: 999; padding: 20px"></div>	 -->
+        <div class="clock">
+            <div class="clock-item clock-minutes countdown-time-value">
+                <div class="wrap">
+                    <div class="inner">
+                        <div id="canvas-minutes" class="clock-canvas"></div>
+
+                        <div class="text">
+                            <p class="val">0</p>
+                            <p class="type-minutes type-time">MINUTES</p>
+                        </div><!-- /.text -->
+                    </div><!-- /.inner -->
+                </div><!-- /.wrap -->
+            </div><!-- /.clock-item -->
+        </div><!-- /.clock -->
+
+    <script type="text/javascript">
+      $('.countdown').final_countdown({
+            'start': 1362139200,
+            'end': 1388461320,
+            'now': 1387461319        
+        });
+    </script>
 
 		<div id="slider"></div>
 
