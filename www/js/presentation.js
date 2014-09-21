@@ -9,3 +9,15 @@ $(function() {
 
 
 });	
+
+$(function() {	
+	
+		$.get('../www/IngredientsTest.php', function(data) {
+			var ingredients = $(data).find('.ingredients').find('a');
+			$.each(ingredients, function(index, val) {
+				$('#ingredientslist').append('<li>' + val.innerText + '</li>');
+				// console.log(val.innerText)
+			});
+		});
+
+});	

@@ -33,7 +33,8 @@ class Allerhande {
 		// Clean up image string
 		$img = substr($arr[0], strpos($img, 'http://'), -1);
 
+
+
 		return $img;
 	}
-
 }
