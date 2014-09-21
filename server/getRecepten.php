@@ -6,10 +6,12 @@ include_once("recepten.php");
 include_once("countrycolors.php");
 include_once("huemanager.php");
 include_once("bolmanager.php");
+include_once("spotify.php");
+
 
 //Getting those annoying notices and warnings out of the way
 
-// error_reporting(E_ALL);
+error_reporting(0);
 // ini_set('display_errors', 1);
 
 $flightId = $_REQUEST['flightId'];
@@ -31,6 +33,7 @@ if(file_exists($fileName)){
 
 	file_put_contents($fileName, json_encode($jsonObject));	
 }
+
 
 //HueManager::setColors($jsonObject->colors->HUE);
 
