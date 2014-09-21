@@ -3,6 +3,7 @@
 include_once("transavia.php");
 include_once("countrycode.php");	
 include_once("recepten.php");
+include_once("Allerhande.php");
 include_once("countrycolors.php");
 include_once("huemanager.php");
 include_once("bolmanager.php");
@@ -30,16 +31,18 @@ if(file_exists($fileName)){
 	$jsonObject->colors->RGB = CountryColors::getMainColors($countryCode);
 	$jsonObject->colors->HUE = CountryColors::array_RGB_TO_HUE($jsonObject->colors->RGB);
 	$jsonObject->producten = BolManager::getProductsForCountry($search = Countries::getDutchName($countryCode));
+
 	//$jsonObject->bagbeltNumber = Schiphol::getBagbeltNumber($journeyCode);
+
+	$jsonObject->spotify = Spotify::getTrack($countryCode);
+
+	foreach($jsonObject->recepten as &$r) {
+		$r->receptimagehd = Allerhande::getHighResImage($r->recepturl);
+	}
 
 	file_put_contents($fileName, json_encode($jsonObject));	
 }
 
-
 //HueManager::setColors($jsonObject->colors->HUE);
 
-
 echo json_encode($jsonObject);
-
-
-?>

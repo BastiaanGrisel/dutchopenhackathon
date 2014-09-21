@@ -1,0 +1,127 @@
+$gutterwidth: 0;
+
+* {
+	display:border-box;
+}
+
+html, body {
+	height:100%;
+}
+
+body {
+	margin:0;
+	font-family:Frutiger LT Std;
+}
+
+#header {
+	width:100%;
+	height:18%;
+	vertical-align:middle;
+	background:#fff;
+	overflow:hidden;
+	position:relative;
+	text-align:center;
+
+	font-family:"Frutiger LT Std", "Helvetica", sans-serif;
+	font-weight:900;
+	font-size:60px;
+	line-height:1.1;
+	font-stretch: condensed;
+
+	p {
+		display:inline-block;
+		vertical-align:middle;
+		margin:0;
+	}
+}
+
+.recipe {
+	width:100%;
+	height:41%;
+	padding:0 $gutterwidth;
+	position:relative;
+
+	.recipe-image {
+		height:100%;
+		margin:0 auto;
+		background-position:center top;
+		background-repeat:no-repeat;
+		background-size:cover;
+
+		position:relative;
+		opacity:.8;
+
+	}
+
+	.recipe-meta {
+		position:absolute;
+		bottom:0;
+		width:100%;
+		background:rgba(0,0,0,.75);
+
+		color:#fff;
+
+		.recipe-title, .recipe-duration {
+			float:left;
+		}
+
+		.recipe-title {
+			width:85%;
+		}
+
+		.recipe-duration {
+			width:15%;
+			text-align:right;
+			font-size:40px;
+			position:absolute;
+			right:30px;
+			bottom:10px;
+		}
+
+		h1 {
+			line-height:1;
+			margin:15px 0 15px 20px;
+			line-height:75px;
+			font-weight:700;
+			font-size:60px;
+			font-family:Frutiger LT Std;
+		}
+	}
+
+}
+
+#recipe-top {
+	
+}
+
+#recipe-btm {
+	
+	.recipe-meta {
+		
+		bottom:auto;
+		top:0;
+		
+		
+	}
+	
+}
+
+#products {
+	width:100%;
+	padding:0 $gutterwidth;
+
+	ul {
+		margin:0;
+		padding:0;
+		list-style:none;
+
+		li {
+			margin:0 0 $gutterwidth;
+			padding:10px;
+		}
+	}
+}
+
+.slide-container {
+	height:100%;
+}
