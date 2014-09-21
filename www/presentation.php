@@ -84,19 +84,16 @@ if (!empty($_POST['s'])) {
 
 					<section id="recipe-btm" class="recipe">
 
-						<div class="recipe-image" style="background-image:url('{{receptimagehd}}');">
-
-							<div class="recipe-meta">
-								<div class="recipe-title">
-									<h1>{{receptomschrijving}}</h1>
-								</div>
-								{{#recepttijd}}
-								<div class="recipe-duration">
-									{{recepttijd}} min
-								</div>
-								{{/recepttijd}}
+						<div class="recipe-image" style="background-image:url('{{receptimagehd}}');">&nbsp;</div>
+						<div class="recipe-meta">
+							<div class="recipe-title">
+								<h1>{{receptomschrijving}}</h1>
 							</div>
-
+							{{#recepttijd}}
+							<div class="recipe-duration">
+								{{recepttijd}} min
+							</div>
+							{{/recepttijd}}
 						</div>
 
 					</section>
@@ -202,7 +199,7 @@ if (!empty($_POST['s'])) {
 							slideshowSpeed: 5000,
 							//controlNav: false,
 							directionNav: false,
-							keyboard:true,
+							keyboard: true,
 							multipleKeyboard: true
 						});
 
