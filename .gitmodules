@@ -4,3 +4,6 @@
 [submodule "server/huephp"]
 	path = server/huephp
 	url = git@github.com:muesli/huephp.git
+[submodule "iso"]
+	path = iso
+	url = git@github.com:jasny/iso.git
